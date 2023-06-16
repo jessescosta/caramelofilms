@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Cadastro de filme</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+
+    <h1>Cadastro de Filme</h1>
+    <a href="/filmes">Lista de Filmes</a>
+    <a href="/filmes/pesquisa">Buscar</a>
+
+    <form method="post" action="/filmes">
+
+        <input type="hidden" name="_method" value="put" th:if="${filme != null}">
+        <input type="hidden" name="id" th:value="${filme?.id}">
+
+        <div>
+            <label for="nome">Nome:</label>
+            <input id="nome" name="nome" th:value="${filme?.nome}">
+        </div>
+
+        <div>
+            <label for="duracao">Duração (em minutos):</label>
+            <!-- <input id="duracao" name="duracao" th:value="${filme?.duracaoEmMinutos}"> -->
+            <input type="text" pattern="[0-9]*" inputmode="numeric" title="Digite apenas números"  min="1" max="100" id="duracao" name="duracao" th:value="${filme?.duracaoEmMinutos}">
+        </div>
+
+        <div>
+            <label for="ano">Ano de lançamento:</label>
+            <input type="text" pattern="[0-9]*" inputmode="numeric" title="Digite apenas números"  min="1" max="100" id="ano" name="ano" th:value="${filme?.anoLancamento}">
+        </div>
+
+        <div>
+            <label for="genero">Gênero:</label>
+            <input id="genero" name="genero" th:value="${filme?.genero}">
+        </div>
+        <!--
+         <input type="submit" value="Cadastrar">
+          -->
+        <input type="submit" name="_method" value="Atualizar" th:if="${filme != null}">
+        <input type="submit" name="_method" value="Cadastrar" th:if="${filme == null}">
+    </form>
+
+</div>
+
+</body>
+</html>
