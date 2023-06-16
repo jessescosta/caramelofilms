@@ -91,7 +91,7 @@ public class FilmeController {
             dados = gson.fromJson(json, DadosBuscaFilmeOmdb.class);
             Filme filme = new Filme();
             filme.buscaFilme(dados);
-            System.out.println(endereco + "  "+json);
+            //System.out.println(endereco + "  "+json);
             repository.save(filme);
             listFilmes.add(filme);
             System.out.println(listFilmes);
