@@ -48,6 +48,16 @@ public class FilmeController {
         //System.out.println(model.addAttribute("busca",listFilmes));
         return "filmes/pesquisa";
     }
+    @GetMapping("/formpesquisa")
+    public String carregaPaginaFormPesquisa(Model model){
+        if (!listFilmes.isEmpty()) {
+            Filme filme = listFilmes.get(0);
+            model.addAttribute("filmeOmdb", filme);
+            System.out.println(filme + "  Model: "+model);
+            listFilmes.clear();
+        }
+        return "filmes/formpesquisa";
+    }
     @PostMapping
     @Transactional
     public String cadastrarFilme(DadosCadastroFilme dados){
@@ -95,7 +105,8 @@ public class FilmeController {
             repository.save(filme);
             listFilmes.add(filme);
             System.out.println(listFilmes);
-            retorno = "redirect:/filmes";
+            retorno = "redirect:/filmes/formpesquisa";
+            //listFilmes.clear();
 
         } catch (Exception e) {
             System.out.println("[Erro] --> " + e.getMessage());
