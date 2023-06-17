@@ -17,6 +17,11 @@
     <form>
 
         <div>
+            <label for="poster"></label>
+            <img id="poster" name="poster" th:src="${filmeOmdb?.poster}" alt="Poster do Filme">
+        </div>
+
+        <div>
             <label for="nome">Nome:</label>
             <input id="nome" name="nome" th:value="${filmeOmdb?.nome}" readonly>
         </div>

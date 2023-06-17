@@ -12,6 +12,7 @@ public class Filme {
     private Integer duracaoEmMinutos;
     private Integer anoLancamento;
     private String genero;
+    private String poster;
 
     public Filme() {}
     public Filme (DadosCadastroFilme dados){
@@ -19,16 +20,21 @@ public class Filme {
         this.duracaoEmMinutos = dados.duracao();
         this.anoLancamento = dados.ano();
         this.genero = dados.genero();
+        this.poster = dados.poster();
     }
+
     @Override
     public String toString() {
         return "Filme{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", duracaoEmMinutos=" + duracaoEmMinutos +
                 ", anoLancamento=" + anoLancamento +
                 ", genero='" + genero + '\'' +
+                ", poster='" + poster + '\'' +
                 '}';
     }
+
     public Long getId() {
         return id;
     }
@@ -44,6 +50,9 @@ public class Filme {
     public String getGenero() {
         return genero;
     }
+    public String getPoster() {
+        return poster;
+    }
 
     public void atualizaDados(DadosAlteracaoFilme dados) {
         this.nome = dados.nome();
@@ -56,6 +65,7 @@ public class Filme {
         this.anoLancamento = Integer.valueOf(dados.year().substring(0,4));
         this.duracaoEmMinutos = Integer.valueOf(dados.runtime().substring(0,3).replace(" ",""));
         this.genero = dados.genre();
+        this.poster = dados.poster();
     }
 
 }
